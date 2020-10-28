@@ -2,14 +2,16 @@ var valor =0;
 
 $(document).on("click","#salvar",function(){
 
-localStorage.setItem(valor,$("#nome","#pedido").val());
+var dados = {nome: $("#nome").val(),end:$("#endereco").val(),
+ped:$("#pedido").val()};
+localStorage.setItem(valor,JSON.stringify(dados));
 valor++;
 });
 
 $(document).on("click","#buscar", function(){
-  var pessoa = localStorage.getItem($("#identificador").val());
-  $("#nomeBusca").val(pessoa);
-
+  var pessoa = JSON.parse(localStorage.getItem($("#identificador").val()));
+  $("#nomeBusca").val(pessoa,nome,pedido);
+  $("#enderecoBusca").val(pessoa,end);
 });
 
 $(document).on("click","#limpar", function(){
